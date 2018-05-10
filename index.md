@@ -4,3 +4,9 @@
 
 layout: home
 ---
+
+Thank you for visiting.
+
+If you're looking for my previous blog posts, please check back.  I am in the process of relocating this blog.  Thank you for tour patience.
+
+-Rick
