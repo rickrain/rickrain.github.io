@@ -1,7 +1,8 @@
 ---
 layout: page
 title: About
-permalink: /about/
+permalink: /about-me/
+comments: true
 ---
 
 # Professional #
@@ -21,8 +22,33 @@ I have a Bachelor of Science Degree in Computer Science from the University of T
 
 # Hobbies #
 
-Running continues to be a passion for me even though I don't run as hard as I used to.  I used to run 2-3 marathons per year and race in some shorter distances as part of my training.  I was fortunate to qualify for the Boston Marathon two times, first with a 3:20 (7:38/mile pace) time and again with a 3:24 (7:48/mile pace).  My best days are probably behind me in this sport, but I'm on a personal journey to get back to the marathon distance and hopefully back to Boston.
+Running continues to be a passion for me even though I don't run as hard as I used to.  I used to run 2-3 marathons per year and race in some shorter distances as part of my training.  I was fortunate to qualify for the Boston Marathon two times, first with a 3:20:45 time and again with a 3:24:00.  My best days are probably behind me in this sport, but I'm on a personal journey to get back to the marathon distance and hopefully back to Boston.
 
 # Home #
 
 Home is in Dallas, TX.
+
+
+{% if page.comments %}
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = "{{ site.baseurl }}";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "{{ page.url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://rickrainey.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+{% endif %}

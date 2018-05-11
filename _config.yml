@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Rick Rainey's - Azure Blog
+title: Rick Rainey - Developing on the Microsoft Azure Platform
 description: >- # this means to ignore newlines until "baseurl:"
   Rick Rainey's personal blog for Developers and IT Professionals
   building solutions on the Microsoft Azure platform.  Opinions and
@@ -28,6 +28,9 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
+
+disgus:
+  shortname: rickrainey
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
