@@ -2,7 +2,7 @@
 layout: post
 title:  "Add a custom device to the Azure IoT Suite Remote Monitoring solution"
 date:   2016-06-22 16:06:04 -0500
-permalink: /:year/:month/:day/:title/
+permalink: /2016/06/22/add-a-custom-device-to-the-azure-iot-suite-remote-monitoring-solution/
 comments: true
 ---
 
