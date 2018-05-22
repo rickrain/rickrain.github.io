@@ -2,7 +2,7 @@
 layout: post
 title:  "Add a custom device to the Azure IoT Suite Remote Monitoring solution"
 date:   2016-06-22 16:06:04 -0500
-permalink: /2016/06/22/add-custom-device-azure-iot-suite-remote-monitoring-solution/
+permalink: /:year/:month/:day/:title/
 comments: true
 ---
 
@@ -12,7 +12,7 @@ In this blog post, I’m going to be using the Remote Monitoring solution to sho
 
 The [Microsoft Azure IoT Starter Kits](https://azure.microsoft.com/en-us/develop/iot/starter-kits/) provide a variety of boards, sensors, and controls that you can use to get started with IoT in Azure. The one I’m using for this post is the Adafruit Feather M0 Starter Kit shown here from the Azure IoT Starter Kits page. As you can see, it is packed full of gadgets and can take your mind far beyond the scenario I’ll discuss in this post. BTW, this is not an endorsement of any kind. It is the starter kit that was available to me. If you decide to purchase a kit, explore them all and pick the one that best meets your needs. They are all certified for Azure!
 
-![Adafruit Feather M0 Starter Kit](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-01.png)
+![Adafruit Feather M0 Starter Kit](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-01.png)
 
 The getting started page for the Adafruit Feather M0 WiFi starter kit is a good place to start and if you are persistent you will find everything you need to be successful. However, one of the reasons I chose to write this blog is to consolidate all the steps into a single document. I spent hours on what I thought would be a rather trivial process and made some mistakes along the way. Also, because the device manufacturer, the IDE, and the Azure platform span different organizations, the documentation tends to be a bit fragmented as you dive deeper into things. So, my goal here is to document a clear and concise path to connecting a custom device to the remote monitoring solution. Specifically, in this post I will show how to
 
@@ -29,19 +29,19 @@ Before diving in, I also want to extend a sincere thank you to [Ninad Kanthi](ht
 
 The first step in this process was to build the device to connect to the remote monitoring solution. For this, you need the breadboard, some wires, the BME280 sensor (barometric pressure, temperature, and humidity), and the main Adafruit Feather M0 WiFi module. This was a lot of fun for me personally. The last time I did anything involving a breadboard was back in 19xx when I was in college. It was a rewarding experience back then and a lot of fun xx years later in an internet-of-things (IoT) world. I used this opportunity to expose my youngest son to circuitry and IoT. In fact, he built the device referenced in this section of the post.
 
-![Breadboard and sensors](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-02.png)
+![Breadboard and sensors](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-02.png)
 
 First up, install the Adafruit module and BME280 sensor on the board. Placement on the board is not important. You just need to give yourself some room to work.
 
-![Breadboard and sensors](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-03.png)
+![Breadboard and sensors](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-03.png)
 
 Wire up the power (3Vo) and ground (GND) as shown here.
 
-![Breadboard and sensors](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-04.png)
+![Breadboard and sensors](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-04.png)
 
 Next, wire up the BME280 sensor. I tried a couple of wiring configurations (I2C and SPI) and eventually settled on the Serial Peripheral Interface (SPI) wiring configuration. What is shown here is the clock (SCK), data out (SDO), data in (SDI), and chip select (CS) from the BME280 connected to pins 13, 12, 11, and 10 on the main module.
 
-![Breadboard and sensors](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-05.png)
+![Breadboard and sensors](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-05.png)
 
 Later, we will test this out, but first, we need to setup the development environment so we can program the device.
 
@@ -53,11 +53,11 @@ To program the device, you need the Arduino IDE. Specifically, for the Azure IoT
 
 After installing the Arduino IDE, run the IDE and select **File -> Preferences**. Set the Additional Boards Manager URLS to `https://adafruit.github.io/arduino-board-index/package_adafruit_index.json` and click OK. This is used by the IDE’s Board Manager to locate new/updated Adafruit boards.
 
-![Arduino preferences](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-06.png)
+![Arduino preferences](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-06.png)
 
 Next, using the Boards Manager, install the Arduino SAMD Boards and Adafruit SAMD Boards as shown here. To open the Boards Manager, select **Tools -> Boards Manager**.
 
-![Arduino Boards Manager](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-07.png)
+![Arduino Boards Manager](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-07.png)
 
 Close and re-open the Arduino Software IDE.
 
@@ -65,11 +65,11 @@ If you are running on Windows, as I was while writing this post, then you will w
 
 Finally, select **Tools -> Board**, and then select the *Adafruit Feather M0* board as shown here.
 
-![Adafruit Feather M0](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-08.png)
+![Adafruit Feather M0](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-08.png)
 
 Using the Library Manager, install the *Adafruit BME280*, *Adafruit Unified Sensor*, and *RTCZero libraries* as shown here. To open the Library Manager, select **Sketch -> Include Library -> Manage Libraries**.
 
-![Library Manager](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-09.png)
+![Library Manager](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-09.png)
 
 There are two more libraries you need for this solution that you have to download and copy to your Arduino Library folder manually.
 
@@ -78,7 +78,7 @@ There are two more libraries you need for this solution that you have to downloa
 
 Copy both libraries to the `Documents\Arduino\libraries` folder. The Arduino libraries folder now contains the five libraries installed above as shown here.
 
-![Arduino libraries](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-10.png)
+![Arduino libraries](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-10.png)
 
 # Test the device  #
 
@@ -86,13 +86,13 @@ At this stage you are ready to test out some basic functions on the board, such 
 
 In the Arduino Software IDE, select **Tools -> Ports -> [port for the device]** as shown here (your COM port may be different).
 
-![Arduino ports](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-11.png)
+![Arduino ports](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-11.png)
 
 Next, compile **(CTRL + R)** and then upload **(CTRL + U)** the blink sketch to the device. After a few seconds the red light on the device will start blinking on/off per the code in the sketch.
 
 > Note: The device needs to be reset before you can upload a new sketch to it. To do this, press the reset button 2 times, reconfigure your port setting in the Arduino IDE, and then upload the sketch.
 
-![Blinking device](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-12.png)
+![Blinking device](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-12.png)
 
 # Deploy the Azure IoT Suite Remote Monitoring Solution #
 
@@ -102,15 +102,15 @@ Click the link to **Create a new solution**.
 
 Select the **Remote Monitoring Solution**.
 
-![Azure IoT Suite Preconfigured Solutions](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-13.png)
+![Azure IoT Suite Preconfigured Solutions](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-13.png)
 
 Enter a solution name, select a region, select your subscription you want the solution deployed in, and then click **Create Solution**.
 
-![Remote Monitoring Solution Details](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-14.png)
+![Remote Monitoring Solution Details](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-14.png)
 
 The solution takes about 10 minutes to deploy. After it does, launch the dashboard (ie: web app) for the solution by clicking **Launch** on the solution as shown here.
 
-![Launch Remote Monitoring Solution](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-15.png)
+![Launch Remote Monitoring Solution](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-15.png)
 
 # Create a custom device Id and key in the remote monitoring solution #
 
@@ -122,15 +122,15 @@ In the dashboard of the Remote Monitoring solution, click the **Add a Device** b
 
 Next, click the **Add New** button in the panel labeled Custom Device.
 
-![Add custom device](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-16.png)
+![Add custom device](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-16.png)
 
 Next, select the option to define your own Device ID. I named my device *Adafruit-01*. Click the **Check ID** button to verify the device ID is available in your instance of Azure IoT Hub and then click **Create**.
 
-![Generate device ID](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-17.png)
+![Generate device ID](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-17.png)
 
 Copy the *Device ID*, *Device Key*, and the *IoT Hub Hostname* to notepad or another text editor so you can retrieve them later.
 
-![Custom device credentials](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-18.png)
+![Custom device credentials](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-18.png)
 
 # Upload the remote monitoring sketch to the device #
 
@@ -142,15 +142,15 @@ Open the .\remote_monitoring\remote_monitoring.ino sketch using the Arduino IDE.
 
 In the `remote_monitoring.ino` file, include the *AzureIoTHubClient.h* and initialize an instance of *AzureIoTHubClient*. Also, set the *SSID* and *Secret* for the WIFI network you want the device to use.
 
-![Remote monitoring code](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-19.png)
+![Remote monitoring code](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-19.png)
 
 In the `bme280.cpp` file, change the code to initialize the BME280 sensor using the SPI wiring configuration. The original code assumed the I2C wiring configuration for the device.
 
-![Remote monitoring code](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-20.png)
+![Remote monitoring code](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-20.png)
 
 In the `remote_monitoring.c` file, add the *Device ID*, *Device Key* and *IoT Hub Name* that was created previously.
 
-![Remote monitoring code](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-21.png)
+![Remote monitoring code](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-21.png)
 
 It’s time to compile this thing and try it out! Press **Ctrl-U** to compile and upload the sketch to the device.
 
@@ -158,27 +158,27 @@ It’s time to compile this thing and try it out! Press **Ctrl-U** to compile an
 
 A successful build and upload to the device will result in output similar to what is shown here in the output window of the Arduino IDE.
 
-![Compile remote monitoring solution](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-22.png)
+![Compile remote monitoring solution](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-22.png)
 
 After about 20-30 seconds the device will connect to the WiFi network, initialize the BME280 censor, and then start transmitting data to your IoT Hub instance.
 
-![Working custom device](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-23.png)
+![Working custom device](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-23.png)
 
 # Observe telemetry data sent to IoT Hub #
 
 In the Arduino IDE, you can monitor the recordings from the device using the Serial Monitor as shown here. To open the Serial Monitor, select **Tools -> Serial Monitor**.
 
-![Monitoring telemetry data](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-24.png)
+![Monitoring telemetry data](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-24.png)
 
 > Note: It is not necessary at this point to have the device connected to the USB port on your computer. As long as you can provide a power source and be in range of your WiFi network, the device can be placed anywhere and the telemetry data can be observed in the dashboard of the remote monitoring solution.
 
 In the Devices page of the remote monitoring solution, the status of the custom device will be set to *Running* as shown here.
 
-![Remote monitoring device list](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-25.png)
+![Remote monitoring device list](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-25.png)
 
 Go back to the Dashboard page and change the device to view setting to the custom device ID to see the telemetry data coming from the device. In the image below, I exhaled on the BME280 device and then touched it with my finger to change the temperature and humidity readings.
 
-![Observe temp and humidity change](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-26.png)
+![Observe temp and humidity change](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-26.png)
 
 # Summary #
 
@@ -192,7 +192,7 @@ To shut down the simulator, perform the following steps:
 - Click on **Settings -> WebJobs**.
 - Highlight the *DeviceSimulator-WebJob* and click on **Stop**.
 
-![Stopping web job](../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-27.png)
+![Stopping web job](../../../../assets/img/add-custom-device-azure-iot-suite-remote-monitoring-solution-27.png)
 
 IoT in Azure is a fun and very exciting space. If you want to learn more about IoT and Azure, check out the learning path available [here](https://azure.microsoft.com/en-us/documentation/learning-paths/iot-suite/). Hopefully this post helped to accelerate some of your own learning so you can explore the possibilities of IoT on Microsoft Azure.
 
