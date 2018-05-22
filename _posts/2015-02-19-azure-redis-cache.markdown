@@ -26,7 +26,7 @@ In the Azure portal, search for and select the *Redis Cache* in the Azure Market
 
 After the cache is created you will need two pieces of information from the Redis Cache blade to start using the cache in your code: the host name and an access key. You can access both of these in the Redis Cache blade as shown here.
 
-![Redis Cache Blade](../assets/img/azure-redis-cache-01.png)
+![Redis Cache Blade](../../../assets/img/azure-redis-cache-01.png)
 
 # Create a client application to use the Redis cache #
 
