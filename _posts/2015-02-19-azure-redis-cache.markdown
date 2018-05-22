@@ -2,7 +2,7 @@
 layout: post
 title:  "Azure Redis Cache"
 date:   2015-02-19 16:06:04 -0500
-permalink: /2015/02/19/azure-redis-cache/
+permalink: /:year/:month/:day/:title/
 comments: true
 ---
 
@@ -26,7 +26,7 @@ In the Azure portal, search for and select the *Redis Cache* in the Azure Market
 
 After the cache is created you will need two pieces of information from the Redis Cache blade to start using the cache in your code: the host name and an access key. You can access both of these in the Redis Cache blade as shown here.
 
-![Redis Cache Blade](../../../assets/img/azure-redis-cache-01.png)
+![Redis Cache Blade](../../../../assets/img/azure-redis-cache-01.png)
 
 # Create a client application to use the Redis cache #
 
@@ -36,7 +36,7 @@ The code I’m going to show in this section is running in a simple console appl
 
 The Redis Client Library I’m using is from Stack Exchange and is available as a NuGet package as shown here.
 
-![Redis Client Library](../assets/img/azure-redis-cache-02.png)
+![Redis Client Library](../../../../assets/img/azure-redis-cache-02.png)
 
 Before I transition into the code to add/retrieve items to and from the cache, I want to mention another NuGet package that may be useful if you’re developing web applications, which is the RedisSessionStateProvider. This will provide easy support for caching `ASP.NET` sessions if you need it. However, it is not a topic I’m going to cover in this post.
 
@@ -136,7 +136,7 @@ Console.WriteLine();
  
 The output of the application is show here.
 
-![Application Output](../assets/img/azure-redis-cache-03.png)
+![Application Output](../../../../assets/img/azure-redis-cache-03.png)
 
 # Summary #
 
