@@ -8,7 +8,7 @@ comments: true
 
 At the end of the last post I closed by mentioning how the [Azure AD Graph API](https://msdn.microsoft.com/en-us/library/azure/hh974478.aspx) and the [IsMemberOf](https://msdn.microsoft.com/en-us/library/azure/dn151601.aspx) function could be used to determine a user’s membership in Azure AD Groups. However, as you saw in the last post, the group claims feature recently added to Azure AD made that task extremely simple without needing to use the Graph API. Still, there are many application scenarios where the Graph API is very useful and so it is the purpose of this post to formally introduce you to the Azure AD Graph API and introduce some handy client libraries you can use to access the Graph API.
 
-# Introduction to the Azure Active Directory Graph API #
+## Introduction to the Azure Active Directory Graph API ##
 
 Azure Active Directory provides a Graph API for every tenant that can be used to programmatically access the directory. So, if you have an Azure Subscription then the Azure AD Graph API is already there for you to use. Using the Graph API, you can do things such as query the directory to discover users, groups, and relationships between users. You can also use the Graph API to make changes to the directory such as adding, deleting, and updating users. In other words, the Graph API gives you [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) capabilities when accessing the graph. And while my simple introduction is in the context of users and groups, don’t assume those as limitations for the Graph API. It is far more reaching than this and can be used to access virtually any entity in the directory.
 
@@ -29,13 +29,13 @@ This will open a window showing all the application endpoints for your directory
 
 At this point, we have a basic understanding of what the Graph API could be used for, where to access it, and some libraries that can be used to build applications using the Graph API. In the remainder of this post I will demonstrate using the .NET Azure AD Graph API Library and ADAL to implement some scenarios that are made possible via the graph.
 
-# Develop a Client Application for the Azure AD Graph API #
+## Develop a Client Application for the Azure AD Graph API ##
 
 For this post, I’m going to break away from the sample and scenarios of previous posts in this series and create a new application so you can see all the steps from beginning to end in one post. So, let’s get started.
 
 My application is going to be a very simple console application. Doesn’t get any simpler than that! The application is going to access the Graph API and perform a few simple operations.
 
-## Register a New Application in Azure AD ##
+### Register a New Application in Azure AD ###
 
 The first step is to register an application in Azure AD. This is done in the APPLICATIONS page of your directory in the Azure Management Portal. Click on the ADD button at the bottom of the page to proceed through the new application wizard.
 
@@ -49,7 +49,7 @@ Since I chose the Web Application/Web API application type, the next page in the
 
 That completes the application registration part. Now I need to make a couple of configuration changes which I’ll do in the next section.
 
-## Configure the Application to Access the Azure AD Graph ##
+### Configure the Application to Access the Azure AD Graph ###
 
 The configuration changes I need to make can be done in the **CONFIGURE** page for the application I registered using the Azure Management Portal. Shortly I’ll be getting into the code of the application and when I do there will be two pieces of information that I’m going to need. The first is the **CLIENT ID** which Azure AD generated for me when the application was registered. The other is a **KEY** (or secret) that I need to generate for my application so it can access the graph. Both of these are shown below. Pay attention to the message in the portal when you generate your key. As soon as you save the configuration change you will be able to see the key and copy it. After that, you will never be able to see it again so be sure to copy it before leaving the page. Otherwise, you will have to re-generate a new key. Also, notice that you can create multiple keys. This is to support key rollover scenarios. For example, as your key approaches expiration you can create a new key, update and deploy your code with the new key, and then remove the old key.
 
@@ -63,14 +63,14 @@ A little further down in the **permissions to other applications** section, I am
 
 Now, with these configuration changes saved, I’m ready to transition into the coding of this application.
 
-##Create a new Console Application using Visual Studio ##
+### Create a new Console Application using Visual Studio ###
 
 After creating my new Console Application in Visual Studio, the first thing I want to do is bring in the client libraries that I’ll be using to access the graph in my directory. Both are available as NuGet packages and are as follows:
 
 - [Active Directory Authentication Library (ADAL)](https://www.nuget.org/packages/Microsoft.IdentityModel.Clients.ActiveDirectory/2.14.201151115), v2.14.201151115
 - [Azure Active Directory Graph Client Library](https://www.nuget.org/packages/Microsoft.Azure.ActiveDirectory.GraphClient/2.0.5), v2.05
 
-## Add Configuration Settings ##
+### Add Configuration Settings ###
 
 The first thing I’m going to do is bring in some settings from Azure AD and configuration from the application I just registered in my directory. I’ll need this information for authenticating to Azure AD and accessing the graph.
 
@@ -93,7 +93,7 @@ const string serviceRootURL = "https://graph.windows.net/cloudalloc.com";
 
 The settings in this code may look familiar. For example, the authString, resAzureGraphAPI and the serviceRootURL are simply from the App Endpoints dialog in Figure 2 above. The clientID and clientSecret were generated when registering the application as referenced in Figure 5 above and it is these two settings that will be used to generate a **ClientCredential** for authenticating to Azure AD later in this post. And while I’m talking about keys understand that it is not a best practice to store keys like this in code. I am showing it here out of convenience for this blog post. I suggest you be mindful of [best practices for deploying passwords and other sensitive data to ASP.NET and Azure Websites]([http://www.asp.net/identity/overview/features-api/best-practices-for-deploying-passwords-and-other-sensitive-data-to-aspnet-and-azure) for your own applications.
 
-## Instantiate ActiveDirectoryClient from the Azure AD Graph Client Library ##
+### Instantiate ActiveDirectoryClient from the Azure AD Graph Client Library ###
 
 The Azure Active Directory Graph Client Library provides a class called the **ActiveDirectoryClient** that is used to access all the properties available to you in the graph, such as users, groups, contacts, the applications you have registered, and much more. As shown below, there are several properties hanging off of it to work with the various entities in your directory. The list of methods is brief and you will notice the **IsMemberOfAsync** that I talked about in previous posts as an alternative way to determine if a user is in a particular group.
 
@@ -150,7 +150,7 @@ The point I want to be clear on here is that what I’m showing you is just one 
 
 Now that I’m able to connect to the graph I will show how we you perform a few operations on the graph.
 
-## Lookup a User by their User Principal Name (UPN) ##
+### Lookup a User by their User Principal Name (UPN) ###
 
 I’ll start with a simple query of the directory. In this series I’ve used a fictitious user named John Doe to demonstrate various concepts. Below is how you could retrieve the User object for John Doe using his user principal name (UPN).
 
@@ -167,7 +167,7 @@ User userJohnDoe = (User)await userLookupTask;
 Console.WriteLine(userJohnDoe.DisplayName);
 ```
 
-## Add a New User to the Directory ##
+### Add a New User to the Directory ###
 
 To add a new user to the directory you need to instantiate an instance of the User class and set some required properties as shown in the code below. There are many more properties that you can set for the user, but these are the minimum requirements for adding a user. The **AddUserAsync** method will write the user object into the directory.
 
@@ -200,7 +200,7 @@ var newUser = new User()
 adClient.Users.AddUserAsync(newUser).Wait();
 ```
 
-## Assign a User’s Manager ##
+### Assign a User’s Manager ###
 
 The Manager property is defined in the base class **DirectoryObject** that **User** derives from. So, when setting the Manager property you need to cast the user back to a **DirectoryObject** as I’ve shown here. Also, notice that when I update the graph I do so by calling UpdateAsync on the user who is being assigned as the manager and not the user whose Manager property is being set.
 
@@ -210,7 +210,7 @@ newUser.Manager = (DirectoryObject)userJohnDoe;
 userJohnDoe.UpdateAsync().Wait();
 ```
 
-## Retrieve a List of Direct Reports for a User ##
+### Retrieve a List of Direct Reports for a User ###
 
 In the previous step I made Jay Hamlin’s manager John Doe. You can see all of John Doe’s direct reports as shown in the following code.
 
@@ -230,13 +230,13 @@ do
 } while (directReports.MorePagesAvailable);
 ```
 
-# Summary #
+## Summary ##
 
 In this post I introduced you to the Azure AD Graph API and laid the groundwork for how you can leverage the graph in your own applications. I showed how to add and configure an application in the Azure Management Portal to use the graph and then I introduced you to the Azure AD Graph Client Library. Next, I provided sample code to connect to the graph and perform a few basic operations.
 
 I barely scratched the surface of possibilities that the Azure AD Graph API presents. The Azure AD team has some excellent samples on GitHub that show many more scenarios for using the Graph API and the Graph Client Library in console and web applications. In addition to the samples, the Azure AD Graph Team has some nice blogs for you to learn more about the Graph API and the Azure AD Graph Client Library. Links to these resources are below in the References section. So, I encourage you to go explore the graph of possibilities.
 
-# References #
+## References ##
 
 - [Azure Active Directory Graph Team Blog](http://blogs.msdn.com/b/aadgraphteam/)
 - [Console Application Graph API Example](https://github.com/AzureADSamples/ConsoleApp-GraphAPI-DotNet)

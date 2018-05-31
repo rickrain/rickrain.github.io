@@ -20,7 +20,7 @@ With performance and features such as this it is no wonder why the Azure Redis C
 
 In this post I will demonstrate how you can use the Azure Redis Cache in your application with an emphasis on some of the features unique to Redis.
 
-# Create a Redis Cache #
+## Create a Redis Cache ##
 
 In the Azure portal, search for and select the *Redis Cache* in the Azure Marketplace.  In the New Redis Cache blade, provide a unique DNS name. Next, select the pricing tier (see Figure 1 above for tier choices, the resource group your cache will belong to, and the location. You should strive to select a location that is in the same region as the services that will use the cache for best performance. The DNS name for your cache will be `{cache name}.redis.cache.windows.net`.
 
@@ -28,11 +28,11 @@ After the cache is created you will need two pieces of information from the Redi
 
 ![Redis Cache Blade](../../../../assets/img/azure-redis-cache-01.png)
 
-# Create a client application to use the Redis cache #
+## Create a client application to use the Redis cache ##
 
 The code I’m going to show in this section is running in a simple console application. This is intentional to keep the focus on using the Azure Redis Cache. However, the code can be used in any application of your choice after installing the Redis Client Library from Stack Exchange.
 
-## Install Redis Client Library ##
+### Install Redis Client Library ###
 
 The Redis Client Library I’m using is from Stack Exchange and is available as a NuGet package as shown here.
 
@@ -40,7 +40,7 @@ The Redis Client Library I’m using is from Stack Exchange and is available as 
 
 Before I transition into the code to add/retrieve items to and from the cache, I want to mention another NuGet package that may be useful if you’re developing web applications, which is the RedisSessionStateProvider. This will provide easy support for caching `ASP.NET` sessions if you need it. However, it is not a topic I’m going to cover in this post.
 
-# Connect to the Azure Redis Cach #
+## Connect to the Azure Redis Cach ##
 
 The ConnectionMultiplexer provides a Connect method used to connect to the cache. It expects a string containing the Redis Endpoint Uri and Access Key. The Endpoint Uri and Access Key were referenced previously using the Azure Management portal and I’ve stored these settings in the app.config file for my application as shown here.
 
@@ -67,7 +67,7 @@ redisConnection = ConnectionMultiplexer.Connect(
 var cache = redisConnection.GetDatabase();
 ```
 
-# Add items to the Azure Redis Cache #
+## Add items to the Azure Redis Cache ##
 
 Now that I have my connection established, I can start adding items to the cache. In the code below, I’m demonstrating four things:
 
@@ -103,7 +103,7 @@ await cache.ListRightPushAsync(keyBasicTier, basicTiers1to5);
 await cache.ListRightPushAsync(keyBasicTier, "B6");
 ```
 
-# Retrieve items from the Azure Redis Cache #
+## Retrieve items from the Azure Redis Cache ##
 
 In this section I’ll demonstrate retrieving, and in one case removing, items in the cache. Note that in this section I’m also not using Asychronous API’s as I did in the previous section. This is just to demonstrate that the Redis Cache Client Library supports both synchronous and asynchronous API’s.
 
@@ -132,17 +132,17 @@ while (item != RedisValue.Null)
 Console.WriteLine();
 ```
 
-# Observing the application output #
+## Observing the application output ##
  
 The output of the application is show here.
 
 ![Application Output](../../../../assets/img/azure-redis-cache-03.png)
 
-# Summary #
+## Summary ##
 
 In this post I introduced some basic principles of the Azure Redis Cache. I showed how to create a cache using the Azure Management portal and then how to use the .NET Client Library from Stack Exchange to add, update, remove, and retrieve items in the cache.
 
-# References #
+## References ##
 
 [Azure Redis Cache FAQ](https://docs.microsoft.com/en-us/azure/redis-cache/cache-faq)
 

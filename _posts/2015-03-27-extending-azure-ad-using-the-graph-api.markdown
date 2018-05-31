@@ -17,15 +17,15 @@ This is really cool, but it does have some limitations so don’t think this sho
 - The directory objects that can be extended using extension properties are [User](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#UserEntity), [Group](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#GroupEntity), [TenantDetail](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#TenantDetailEntity), [Device](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#DeviceEntity), [Application](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#ApplicationEntity), and [ServicePrincipal](https://msdn.microsoft.com/library/azure/ad/graph/api/entity-and-complex-type-reference#ServicePrincipalEntity).
 - A directory (or Azure AD tenant) can have **up to 100 extension properties registered**.
 
-# A Sample Scenario #
+## A Sample Scenario ##
 
 Now that we know what our limitations are let’s look at a scenario. Assume that I’m building a line-of-business application to manage parking passes for employees. In addition to the employee information I can get from Azure AD I also need some basic vehicle information about the employee’s vehicle so building security knows which vehicles are authorized to be in the parking lot or garage. If this is all I need, then using schema extensions provides a perfect alternative to taking a traditional database approach. Let’s see how this can be done using the Azure AD Graph API Directory Schema Extensions and the Azure AD Graph Client Library.
 
-# Register a New Application in Azure AD #
+## Register a New Application in Azure AD ##
 
 For this post I’m using the same application I registered in the previous post to demonstrate the directory schema extensions feature. So, rather than repeat those steps here, see the [Register a New Application in Azure AD](http://rickrainey.com/2015/02/21/introducing-the-azure-ad-graph-api/) section of the previous post.
 
-# Create a New Console Application Using Visual Studio #
+## Create a New Console Application Using Visual Studio ##
 
 I am also using the same console application I used in the previous post. So, I won’t be repeating the nuances of instantiating an instance of the **ActiveDirectoryClient** in the Azure AD Graph Client Library. I’m assuming that when you see *adClient* in the forthcoming code that you know how it was created. If not, then please go back and review the previous post.
 
@@ -36,7 +36,7 @@ The only change I did make in this version of the application is that I updated 
 
 Perfect! Now with those disclaimers out of the way, let’s dive right into directory schema extensions.
 
-# Define a Model for Vehicle Information #
+## Define a Model for Vehicle Information ##
 
 In this sample scenario, I added a simple class to hold essential vehicle information that my application will need as shown here. Notice that I’m not using properties but instead just member variables. This helps to reduce the size of the object when it is serialized as binary and therefore intentional in light of limitation #2 above.
 
@@ -54,7 +54,7 @@ You may be thinking that defining a complex type like this violates limitation #
 
 Now, for instances of **VehicleInfo** to be available as a property for users in my directory, I need to first register anextension property with Azure AD.
 
-# Register an Extension Property in Azure AD #
+## Register an Extension Property in Azure AD ##
 
 Extension properties are defined using the **ExtensionProperty** class from the Azure AD Graph Client Library. To register an extension property you need to create one and set just a few required properties. This is a one-time operation. The extension property for my vehicle information data is shown here.
 
@@ -108,7 +108,7 @@ Notice on line 10 that the name of the extension is not just the name “VehInfo
 
 Now that Azure AD knows about the extension property for my application, let’s see how you can set the value of the property for a user.
 
-# Lookup a Previously Registered Extension #
+## Lookup a Previously Registered Extension ##
 
 To lookup a previously registered extension you can query the **ExensionProperties** collection of the application as shown here.
 
@@ -129,7 +129,7 @@ IExtensionProperty vehInfoExtProperty = allExtProperties.Where(
     extProp => extProp.Name == extPropLookupName).FirstOrDefault();
 ```
 
-# Set the Extension Property Value for a User #
+## Set the Extension Property Value for a User ##
 
 To set the extension property for a user you need to get a **User** reference. I’m going to stick with the “John Doe” user I’ve been using throughout this blog series and invoke a LINQ query against the **ActiveDirectoryClient.Users** property to get a reference to John Doe’s directory object as shown below. Next, I am creating an instance of the VehicleInfo class I defined previously and then used the **User.SetExtendedProperty** method to set the value for my user. Recall that our extension property can be either a String or Binary type – complex types are not supported (limitation #1 from above). To get around this, I’m using the [Json.NET](http://www.newtonsoft.com/json), v6.08 NuGet package to serialize my vehicleInfo object to a JSON string. Finally, I invoked UpdateAsync to update the client side object and then **SaveChange** on the user’s context to save the change in Azure AD.
 
@@ -162,7 +162,7 @@ The code above results in John Doe’s directory object being updated with the e
 
 ![Extension property in Azure AD](../../../../assets/img/extending-azure-ad-using-the-graph-api-03.png)
 
-# Retrieve the Extension Property Value for a User #
+## Retrieve the Extension Property Value for a User ##
 
 To retrieve the value of an extension property for a user you can query the collection returned from the User.GetExtendedProperties method as shown here. And since I’m serializing my complex type to a JSON string when I store it, I am de-serializing it back into a VehicleInfo object when I get it back.
 
@@ -179,7 +179,7 @@ if (userExtProperty.Value != null)
 }
 ```
 
-# Remove the Extension Property Value for a User #
+## Remove the Extension Property Value for a User ##
 
 Removing an extension property for a user is simply a matter of setting the value to null as shown here.
 
@@ -193,7 +193,7 @@ user.GetContext().SaveChanges();
 
 The code above removes the extension property (line 41 in the image above) from John Doe’s directory object in Azure AD.
 
-# Unregister an Extension Property in Azure AD #
+## Unregister an Extension Property in Azure AD ##
 
 If your application no longer needs an extension property you should unregister/remove it to free the space for potentially other extension properties (limitation #4 above). Unregistering an extension property may be accomplished using the **Remove** method of the **Application.ExtensionProperties** collection as shown here. Note: When you unregister an extension property, it also removes it from any directory objects ( ie: users ) that you may have set the extension property for.
 
@@ -209,7 +209,7 @@ app.GetContext().SaveChanges();
 
 Unfortunately, at the time of this writing using v2.06 of the client library, this method does not actually remove it from Azure AD. As a workaround, the REST API to unregister an extension property does work so until this is corrected that is the only way to do this. The REST API is included in the References section at the end of this post.
 
-# Storing Extension Properties as Binary Data #
+## Storing Extension Properties as Binary Data ##
 
 As I mentioned at the beginning of this post, extension property data can also be stored as binary data. You must be mindful of the 256 byte limit just as you had to be for string data. This can be a bit tricky as the binary representation of a small data type like the one I’m using is significantly larger than its JSON representation. During tests of storing my VehicleInfo object as binary data, I was coming in at about 205 bytes which was much higher than the 70 bytes used to store it as a JSON string. Still, it’s an interesting use case so in this section I’ll show how to create a binary extension property and then store and retrieve the data.
 
@@ -226,7 +226,7 @@ public class VehicleInfo
 }
 ```
 
-# Register a Binary Extension Property in Azure AD #
+## Register a Binary Extension Property in Azure AD ##
 
 To register a binary extension property with Azure AD you need to create a new **ExtensionProperty** and set the **DataType** to Binary as shown in the code below. It is exactly the same as before with just two changes that are highlighted: the name of the property and the data type being set to *Binary*.
 
@@ -262,7 +262,7 @@ The code above results in my directory now having two extension properties regis
 
 ![Extension property in Azure AD](../../../../assets/img/extending-azure-ad-using-the-graph-api-04.png)
 
-# Set the Binary Extension Property Value for a User #
+## Set the Binary Extension Property Value for a User ##
 
 An example of how this data can be set using the BinaryFormatter is shown below. As you can see, it is essentially the same code with just a few changes highlighted to serialize the data to binary.
 
@@ -300,7 +300,7 @@ The code above results in John Doe’s directory object being updated with the e
 
 ![Extension property in Azure AD](../../../../assets/img/extending-azure-ad-using-the-graph-api-05.png)
 
-# Retrieve the Binary Extension Property Value for a User #
+## Retrieve the Binary Extension Property Value for a User ##
 
 The code below is an example of how you could read the binary extension property data and de-serialize it back into a VehicleInfo object. Again, the code that is different has been highlighted.
 
@@ -320,13 +320,13 @@ if (userExtProperty.Value != null)
 }
 ```
 
-# Summary #
+## Summary ##
 
 In this pos t I showed you how you can used Azure AD Graph API Directory Schema Extensions to extend the schema in Azure AD. I discussed constraints that you must accept when using this feature and then showed you how you can use the Azure AD Graph Client Library to register extension properties, store, retrieve data using the property, and then remove the extension property. I showed how you can store complex types as a JSON string and also how it can be stored as binary data.
 
 For additional information on this feature I encourage you to look at the Azure AD Graph API Directory Schema Extensions documentation referenced in the References section below. Also, take a look at the post from the Azure AD Graph Team where they demonstrate using extension properties for simple string types.
 
-# References #
+## References ##
 
 - [Azure AD Graph API Directory Schema Extensions](https://msdn.microsoft.com/library/azure/ad/graph/howto/azure-ad-graph-api-directory-schema-extensions)
 - [Azure AD Graph Team Blog](http://blogs.msdn.com/b/aadgraphteam/archive/2014/12/12/announcing-azure-ad-graph-api-client-library-2-0.aspx)
