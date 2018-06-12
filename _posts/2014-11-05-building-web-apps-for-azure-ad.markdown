@@ -6,7 +6,7 @@ permalink: /:year/:month/:day/:title/
 comments: true
 ---
 
-n my [last post](http://rickrainey.com/2014/10/16/azure-active-directory-an-introduction/) I introduced some basic concepts about Azure Active Directory and ended with a review of the protocols and application endpoints that are used to build applications protected by Azure AD. In this post I will continue by talking about developing Web Applications and Web API’s protected by Azure AD using Visual Studio 2013.
+In my [last post](http://rickrainey.com/2014/10/16/azure-active-directory-an-introduction/) I introduced some basic concepts about Azure Active Directory and ended with a review of the protocols and application endpoints that are used to build applications protected by Azure AD. In this post I will continue by talking about developing Web Applications and Web API’s protected by Azure AD using Visual Studio 2013.
 
 Before I get into the developer experience of building a Web Application or Web API protected by Azure AD using Visual Studio, I want to quickly pick up where I left off on the previous post and talk about the portal experience of adding an application to your directory. The experience is extremely simple and prompts you to make only four choices as shown below, two of which require very little thought.
 
