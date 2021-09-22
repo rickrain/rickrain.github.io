@@ -1,6 +1,7 @@
 ---
 title: "Azure Active Directory: An Introduction"
 date: 2014-10-16 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 ## What Azure Active Directory is (and is not) ##

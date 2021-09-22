@@ -1,6 +1,7 @@
 ---
 title: "Developing Native Client Apps for Azure Active Directory"
 date: 2014-12-08 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 In my post titled [Building Web Apps for Azure AD](http://rickrainey.com/2014/11/05/building-web-apps-for-azure-ad/), I discussed developing two types of applications protected by Azure Active Directory: web applications and web API’s. In that post I approached these applications from the perspective of a developer using Visual Studio 2013 and the project templates provided for creating these types of applications. The automation delivered by Visual Studio and the Azure SDK when creating these applications resulted in the two applications being registered in my Azure Active Directory as shown here.

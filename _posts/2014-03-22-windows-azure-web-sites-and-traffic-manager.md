@@ -1,6 +1,7 @@
 ---
 title: "Windows Azure Web Sites and Traffic Manager"
 date: 2014-03-22 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 Last week [Microsoft announced](http://blogs.msdn.com/b/windowsazure/archive/2014/03/13/announcing-general-availability-of-oracle-software-on-windows-azure-and-updates-to-windows-azure-traffic-manager.aspx) Traffic Manager support for Windows Azure Web Sites.  This is a fantastic feature that enables you to deploy your web site to multiple data center regions, resulting in improved availability, performance (for users of your web site), maintenance capabilities, and failover support for your web site.  In this post, I’ll demonstrate how to setup and configure Traffic Manager for Windows Azure Web Sites.

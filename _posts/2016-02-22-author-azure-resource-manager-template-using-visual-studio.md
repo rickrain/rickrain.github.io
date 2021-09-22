@@ -1,6 +1,7 @@
 ---
 title: "Author an Azure Resource Manager Template using Visual Studio"
 date: 2016-02-22 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 **Updated 3/19/2016**

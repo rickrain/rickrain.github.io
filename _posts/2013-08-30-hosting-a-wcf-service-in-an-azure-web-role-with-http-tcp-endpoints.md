@@ -1,6 +1,7 @@
 ---
 title: "Hosting a WCF Service in an Azure Web Role with HTTP & TCP Endpoints"
 date: 2013-08-30 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 ## Introduction

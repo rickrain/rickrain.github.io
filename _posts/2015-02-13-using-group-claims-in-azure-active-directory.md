@@ -1,6 +1,7 @@
 ---
 title: "Using Group Claims in Azure Active Directory"
 date: 2015-02-13 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 In the post titled [Developing Native Client Apps for Azure AD](http://rickrainey.com/2014/12/08/developing-native-client-apps-for-azure-active-directory/) I showed how you can use the Active Directory Authentication Library (ADAL) to build a native client application that calls the CloudAlloc.WebAPI introduced in the post titled [Building Web Apps for Azure AD](http://rickrainey.com/2014/11/05/building-web-apps-for-azure-ad/). As part of that post, I demonstrated how the Web API could be exposed to other applications using *ouath2Permissions* that I defined in the manifest which enabled me to assign permissions to my native client application as shown here.

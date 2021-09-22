@@ -1,6 +1,7 @@
 ---
 title: "Continuous Deployment (GitHub) with Azure Web Sites and Staged Publishing"
 date: 2014-01-21 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 With Windows Azure Web Sites you can setup continuous deployment (CD) to publish your site directly from source control as changes are checked in.  This is a fantastic automation feature that can be leveraged from a range of source control tools such as Visual Studio Online and others (GitHub, BitBucket, DropBox, CodePlex, or Mercurial) .

@@ -1,6 +1,7 @@
 ---
 title: "Deep Dive: Azure Websites and Organizational Authentication using Azure AD"
 date: 2014-08-19 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 In my [previous post](http://rickrainey.com/2014/07/28/authenticating-with-organizational-accounts-and-azure-active-directory/) I showed how to create an Azure Website that uses Organizational Accounts for authenticating users in Azure Active Directory. In this post, I’m going to go deeper and explore how Visual Studio, the Azure SDK, and Azure Active Directory collectively make building secure LOB web applications for the enterprise a first class experience from the very beginning of the application development process.

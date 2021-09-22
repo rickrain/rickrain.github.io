@@ -1,6 +1,7 @@
 ---
 title: "Implementing Polyglot Persistence – Part 1"
 date: 2013-05-22 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 This post will be restored from archives soon.  Please check back.

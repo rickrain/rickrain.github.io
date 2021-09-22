@@ -1,6 +1,7 @@
 ---
 title: "An Introduction to the Azure Resource Manager (ARM)"
 date: 2016-01-19 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 The Azure Resource Manager (ARM) is the service used to provision resources in your Azure subscription. It was first announced at Build 2014 when the new Azure portal (`portal.azure.com`) was announced and provides a new set of API’s that are used to provision resources. Prior to ARM, developers and IT professionals used the Azure Service Management API’s and the old portal (`manage.windowsazure.com)` to provision resources. Today, both portals and sets of API’s are supported. However, going forward you should be using ARM, the new API’s, and the new Azure portal to provision and manage your Azure resources.

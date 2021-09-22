@@ -1,6 +1,7 @@
 ---
 title: "Introducing the Azure AD Graph API"
 date: 2015-02-21 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 At the end of the last post I closed by mentioning how the [Azure AD Graph API](https://msdn.microsoft.com/en-us/library/azure/hh974478.aspx) and the [IsMemberOf](https://msdn.microsoft.com/en-us/library/azure/dn151601.aspx) function could be used to determine a user’s membership in Azure AD Groups. However, as you saw in the last post, the group claims feature recently added to Azure AD made that task extremely simple without needing to use the Graph API. Still, there are many application scenarios where the Graph API is very useful and so it is the purpose of this post to formally introduce you to the Azure AD Graph API and introduce some handy client libraries you can use to access the Graph API.

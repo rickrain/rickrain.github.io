@@ -1,6 +1,7 @@
 ---
 title: "Deploy an Azure Resource Manager Template"
 date: 2016-03-21 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 In my previous [post](http://rickrainey.com/2016/02/22/author-azure-resource-manager-template-using-visual-studio/) I showed how to use Visual Studio 2015 to author a simple Azure Resource Manager (ARM) template from scratch. In this post, I will discuss a few options for deploying that template. Specifically, I will show how to

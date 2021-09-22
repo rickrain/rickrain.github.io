@@ -1,6 +1,7 @@
 ---
 title: "Auto Scaling Cloud Services on CPU Percentage with the Windows Azure Monitoring Services Management Library"
 date: 2013-12-15 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 The auto scaling feature in Windows Azure is a fantastic feature that enables you to scale your services dynamically based on a set of rules.  For example, in the case of Cloud Cervices, if CPU exceeds a defined threshold in your rule, auto scaling will add additional instances to handle the increased load.  When CPU drops below a defined threshold, auto scaling will remove those extra instances.  It’s this kind of elasticity that makes cloud computing so compelling.

@@ -1,6 +1,7 @@
 ---
 title: "Add a custom device to the Azure IoT Suite Remote Monitoring solution"
 date: 2016-06-22 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 Today, [Azure IoT Suite](https://azure.microsoft.com/en-us/documentation/articles/iot-suite-overview/) provides two end-to-end IoT solutions; Predictive Maintenance and Remote Monitoring. These solutions can be deployed into your Azure subscription and running in just a few minutes, enabling you to get hands-on with all the services that comprise a typical IoT solution. If you have never seen the solutions in IoT Suite, I encourage you to check them out. They will accelerate your learnings on how the plethora of services in Azure can be used to implement an IoT solution that provides telemetry ingestion at massive scale, data storage, analytics, and presentation of data. I lean on these solutions a lot when talking to customers about IoT on Azure as well as the [Azure IoT Reference Architecture](https://azure.microsoft.com/en-us/updates/microsoft-azure-iot-reference-architecture-available/). And best of all, these solutions are open sourced on GitHub so you can fork them and use them as a starting point to build your own IoT solutions.

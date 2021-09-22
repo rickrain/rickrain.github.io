@@ -1,6 +1,7 @@
 ---
 title: "Extending Azure AD using the Graph API"
 date: 2015-03-27 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 The Azure Active Directory Graph API enables some interesting scenarios that you can implement in your applications by enabling you to query and manipulate directory objects in Azure AD. In the last post I presented you with some common scenarios available via the Azure AD Graph API and showed how you can implement them using the Azure Active Directory Graph Client Library. In this post, I’m going to introduce you to another scenario made possible using Azure AD Graph API and then take you on a journey through its implementation.

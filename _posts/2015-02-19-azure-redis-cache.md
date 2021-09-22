@@ -1,6 +1,7 @@
 ---
 title: "Azure Redis Cache"
 date: 2015-02-19 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 The Azure Redis Cache is a fully managed dedicated Redis cache that can be used to increase the performance of your cloud applications. It is offered in three tiers: Basic, Standard, and Premium with each tier offering various features and capacity you can choose from.

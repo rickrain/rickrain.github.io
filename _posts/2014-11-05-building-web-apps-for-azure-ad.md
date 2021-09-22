@@ -1,6 +1,7 @@
 ---
 title: "Building Web Apps for Azure AD"
 date: 2014-11-05 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 In my [last post](http://rickrainey.com/2014/10/16/azure-active-directory-an-introduction/) I introduced some basic concepts about Azure Active Directory and ended with a review of the protocols and application endpoints that are used to build applications protected by Azure AD. In this post I will continue by talking about developing Web Applications and Web API’s protected by Azure AD using Visual Studio 2013.

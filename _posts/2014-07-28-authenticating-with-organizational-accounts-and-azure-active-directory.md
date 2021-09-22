@@ -1,6 +1,7 @@
 ---
 title: "Authenticating with Organizational Accounts and Azure Active Directory"
 date: 2014-07-28 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 If you’re an enterprise developer targeting Microsoft Azure for a new Line-of-Business (LOB) application, then you will most likely be building your application to authenticate users using Azure Active Directory.  Azure Active Directory (Azure AD) is Microsoft’s service that provides identity and access capabilities in the cloud.  It can be used to authenticate users of cloud applications or users running modern LOB applications on-premises that may be leveraging Azure services behind the scenes.

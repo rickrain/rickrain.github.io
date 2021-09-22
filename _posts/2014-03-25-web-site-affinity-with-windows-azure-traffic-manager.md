@@ -1,6 +1,7 @@
 ---
 title: "Web Site Affinity with Windows Azure Traffic Manager"
 date: 2014-03-25 16:06:04 -0500
+permalink: /:year/:month/:day/:title/
 ---
 
 In my previous post I talked about using [Windows Azure Web Sites and Traffic Manager](http://rickrainey.com/2014/03/22/windows-azure-web-sites-and-traffic-manager/) together to achieve load balancing across web site deployments in different regions.  Having Traffic Manager support for Windows Azure Web Sites is a great addition to the Windows Azure platform that was recently [announced by Microsoft](http://blogs.msdn.com/b/windowsazure/archive/2014/03/13/announcing-general-availability-of-oracle-software-on-windows-azure-and-updates-to-windows-azure-traffic-manager.aspx).
