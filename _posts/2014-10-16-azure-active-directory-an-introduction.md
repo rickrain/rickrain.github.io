@@ -107,3 +107,27 @@ When you choose the option to **add an application my organization is developing
 ## Summary ##
 
 In this post I introduced Azure AD and some important concepts regarding users. I talked briefly about custom domains and then wrapped up by covering the protocols supported by Azure AD and how they are surfaced through application endpoints unique to the directory. In the next post, I’ll dive into the developer experience and talk about building on the first of the two choices mentioned in the last section which is Web Applications and/or Web API’s.
+
+{% if page.comments %}
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = "{{ site.baseurl }}";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "{{ page.url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://rickrainey.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+{% endif %}

@@ -253,3 +253,27 @@ Anytime you change auto scale settings an AutoscaleAction is invoked.  You can s
 There is so much more to auto scaling that I’ve not even mentioned.  As long as this post is, it’s hard to believe I’ve just barely scratched the surface.  Hopefully this has helped you understand a little more about auto scale for cloud services, the Windows Azure Monitoring Services Management Library, and the benefits of using it to automate your auto scale settings.
 
 The Service Management REST API for Autoscaling provides documentation that at the time of this writing wasn’t available in the .NET API’s that I wrote about.  Even if you don’t use the REST API’s, referring to them for documentation is a good idea.
+
+{% if page.comments %}
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = "{{ site.baseurl }}";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "{{ page.url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://rickrainey.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+{% endif %}

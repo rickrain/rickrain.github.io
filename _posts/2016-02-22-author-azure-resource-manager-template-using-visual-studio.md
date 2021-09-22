@@ -174,3 +174,27 @@ For the output I’m using the **reference()** function to reference the Public 
 In this post I walked through the process of creating a new Azure Resource Group Project using the Blank Template. Next, I added resources individually to support a single virtual machine deployment. Along the way we looked at the components of a Resource Group Project, how ARM templates are structured, and how resource dependencies are defined. We also saw examples of some of the many [ARM Template Functions](https://azure.microsoft.com/en-us/documentation/articles/resource-group-template-functions/) that you can use when authoring templates and how to output information from a deployment when an ARM template is deployed. The completed solution created for this blog post is [available on my GitHub account](https://github.com/rickrain/ARM-Basics).
 
 Next time I’ll show a few ways you can deploy this ARM template.
+
+{% if page.comments %}
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = "{{ site.baseurl }}";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "{{ page.url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://rickrainey.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+{% endif %}

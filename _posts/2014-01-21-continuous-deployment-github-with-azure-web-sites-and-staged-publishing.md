@@ -167,3 +167,27 @@ And as expected, v1.0 is now running in the staging environment.
 I wanted to briefly mention a previous blog from the Windows Azure Team titled Windows Azure Web Sites: How Application Strings and Connection Strings Work . The reason why is connection strings and application settings are common things to change as you transition from one environment to another.  With Staged Publishing now available, the value of these features, while cool before, just became even more important in my opinion because you can define connection strings and application settings appropriate for each environment.  If you’re not using these features today I would suggest you do – especially if you want to get maximum benefit from continuous deployment and staged publishing.
 
 In this post I demonstrated how to setup continuous deployment from a GitHub repository to a Windows Azure Web Site with Staged Publishing enabled.  I also showed the steps necessary to work around a little issue currently present in the preview bits for Staged Publishing.
+
+{% if page.comments %}
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = "{{ site.baseurl }}";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "{{ page.url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://rickrainey.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+{% endif %}

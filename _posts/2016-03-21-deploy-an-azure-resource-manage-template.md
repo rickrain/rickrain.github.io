@@ -211,3 +211,27 @@ After a few minutes the resources described in the template will be provisioned 
 ## Summary ##
 
 This post demonstrated techniques for deploying an ARM template. The first technique used Azure PowerShell to invoke the deployment script, Deploy-AzureResourceGroup.ps1, that Visual Studio created when the resource group project was created in the last post. Next, I showed how to use the Azure Command-Line Interface (CLI) tools to deploy the template file, azuredeploy.json, using parameter values from the template parameters file, azuredeploy.parameters.json. In the Azure CLI case, the deployment script is not used – just the template and template parameters file. Next, I showed how to deploy directly from Visual Studio and pointed out that doing so performs the exact same steps as shown in the Azure PowerShell case, but with some added UI features from Visual Studio to capture parameter values. Finally, I showed you how you can deploy a template using only your browser by leveraging the Template deployment feature in the Azure portal.
+
+{% if page.comments %}
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = "{{ site.baseurl }}";  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = "{{ page.url }}"; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://rickrainey.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            
+{% endif %}
