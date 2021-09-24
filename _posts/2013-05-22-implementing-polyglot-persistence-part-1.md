@@ -4,7 +4,7 @@ date: 2013-05-22 16:06:04 -0500
 permalink: /:year/:month/:day/:title/
 ---
 
-_**NOTE: This post was recovered from archives and unfortunately some of the images were lost.  I've restored as much as I can.  However, due to the age of this post i won't be re-producing the missing images.**_
+_**NOTE: This post was recovered from archives and unfortunately some of the images were lost.  I've restored as much as I can.  However, due to the age of this post I won't be re-producing the missing images.**_
 
 
 In my previous post I talked about what polyglot persistence could look like.  In this post I’ll start digging into some of the implementation details.  I’ve decided to make this a series of posts, hence the “Part 1” suffix in the title.
