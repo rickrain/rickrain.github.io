@@ -24,6 +24,7 @@ sudo apt install git
 # Configure Git
 git config --global user.name "Rick Rainey"
 git config --global user.email "redacted@redacted.com"
+git config --global init.defaultBranch 'main'
 git config --global credential.helper store
 ```
 
